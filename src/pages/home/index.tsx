@@ -1,48 +1,34 @@
 import { Button, Result } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { store } from '../../store/index';
+import { RootState } from '../../store';
 
 const home = () => {
-    return (
-      <div>
-        <Result
-          status="success"
-          title="Successfully Purchased Cloud Server ECS!"
-          subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-          extra={[
-            <Button type="primary" key="console">
-              Go Console
-            </Button>,
-            <Button key="buy">Buy Again</Button>,
-          ]}
-        />
-        <h1>electron-react-boilerplate</h1>
-        <div className="Hello">
-          <a
-            href="https://electron-react-boilerplate.js.org/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <button type="button">
-              <span role="img" aria-label="books">
-                📚
-              </span>
-              Read our docs
-            </button>
-          </a>
-          <a
-            href="https://github.com/sponsors/electron-react-boilerplate"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <button type="button">
-              <span role="img" aria-label="folded hands">
-                🙏
-              </span>
-              Donate
-            </button>
-          </a>
-        </div>
-      </div>
-    );
-  }
+  const global = useSelector((state: RootState) => state.global);
+  const dispatch = useDispatch();
 
-  export default home;
+  const onSetUserToken = () => {
+    dispatch({
+      type: 'global/setUserToken',
+      payload: Number(global.userToken) + 2,
+    });
+  };
+  return (
+    <div>
+      <Result
+        status="success"
+        title="Successfully Purchased Cloud Server ECS!"
+        subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+        extra={[
+          <Button type="primary" key={'fda'} onClick={() => onSetUserToken()}>
+            dispatch setUserToken
+          </Button>,
+        ]}
+      />
+      <div>{global.userToken}</div>
+      <div>{store.getState().global.userToken}</div>
+    </div>
+  );
+};
+
+export default home;
