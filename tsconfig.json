@@ -12,7 +12,18 @@
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "outDir": ".erb/dll"
+    "outDir": ".erb/dll",
+    "typeRoots": ["node_modules/@types", "global.d.ts", "src/store/store.d.ts"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
+  "exclude": [
+    "test",
+    "release/build",
+    "release/app/dist",
+    ".erb/dll",
+    "node_modules",
+    "dist"
+  ]
 }

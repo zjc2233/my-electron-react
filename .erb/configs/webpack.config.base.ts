@@ -6,6 +6,7 @@ import webpack from 'webpack';
 import TsconfigPathsPlugins from 'tsconfig-paths-webpack-plugin';
 import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
+import path from 'path';
 
 const configuration: webpack.Configuration = {
   externals: [...Object.keys(externals || {})],
@@ -46,6 +47,9 @@ const configuration: webpack.Configuration = {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
     // There is no need to add aliases here, the paths in tsconfig get mirrored
+    alias: {
+      '@': path.resolve(__dirname, '../src/') // 假设你的源代码在src目录下
+    },
     plugins: [new TsconfigPathsPlugins()],
   },
 

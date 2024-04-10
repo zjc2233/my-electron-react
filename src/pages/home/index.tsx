@@ -1,7 +1,7 @@
 import { Button, Result } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { store } from '../../store/index';
-import { RootState } from '../../store';
+import { store } from '@/store/index';
+import { RootState } from '@/store';
 
 const home = () => {
   const global = useSelector((state: RootState) => state.global);
